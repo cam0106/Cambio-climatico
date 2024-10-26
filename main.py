@@ -1,5 +1,5 @@
 import discord
-
+import random
 # La variable intents almacena los privilegios del bot
 intents = discord.Intents.default()
 # Activar el privilegio de lectura de mensajes
@@ -17,12 +17,9 @@ async def on_message(message):
         return
     if message.content.startswith('$hello'):
         await message.channel.send("Hola!")
-    if message.content.startswith('$Recomendacion1'):
-        await message.channel.send("Ahorra energia para luchar contra el cambio climático")
-    if message.content.startswith('$Recomendacion2'):
-        await message.channel.send("Pon en práctica las 3 ‘R’ de la sostenibilidad")
-    elif message.content.startswith('$bye'):
-        await message.channel.send("\U0001f642")
+    elif message.content.startswith('$Recomendacion'):
+        await message.channel.send((f'{random.choice(facts_list)}'))
     else:
         await message.channel.send(message.content)
+facts_list = ["Ahorra energia para luchar contra el cambio climático.","Pon en práctica las 3 ‘R’ de la sostenibilidad", "Una dieta baja en carbono supone consumir de manera más inteligente y luchar contra el cambio climático.", "Otra de las acciones para luchar contra el cambio climático que puedes hacer es escoger una energía verde y promover la generación de energías renovables como la solar, eólica, hidráulica." ]
 client.run("")
